@@ -9,7 +9,10 @@ def add_item(current_cart, items_to_add):
     :return: dict - the updated user cart dictionary.
     """
 
-    pass
+    """current_cart = items_to_add([{"Apple": 1, "Banana": 4}])"""
+    for item in items_to_add:
+        current_cart[item]=current_cart.setdefault(item,0)+1
+    return current_cart
 
 
 def read_notes(notes):
@@ -19,7 +22,9 @@ def read_notes(notes):
     :return: dict - a user shopping cart dictionary.
     """
 
-    pass
+    """cart = dict.fromkeys(notes, 0)+1"""
+    cart = dict.fromkeys(notes, 1)
+    return cart
 
 
 def update_recipes(ideas, recipe_updates):
@@ -30,7 +35,10 @@ def update_recipes(ideas, recipe_updates):
     :return: dict - updated "recipe ideas" dict.
     """
 
-    pass
+    ideas.update(recipe_updates)
+    """recipe_updates.items(ideas, 1)"""
+    """return recipe_updates"""
+    return ideas
 
 
 def sort_entries(cart):
@@ -40,7 +48,10 @@ def sort_entries(cart):
     :return: dict - users shopping cart sorted in alphabetical order.
     """
 
-    pass
+    """cart = dict(sorted(add_item, 1))
+    return cart"""
+    sorted_cart = dict(sorted(cart.items()))
+    return sorted_cart
 
 
 def send_to_store(cart, aisle_mapping):
@@ -50,8 +61,22 @@ def send_to_store(cart, aisle_mapping):
     :param aisle_mapping: dict - aisle and refrigeration information dictionary.
     :return: dict - fulfillment dictionary ready to send to store.
     """
+    """create fulfillment_dict varaible"""
+    """dict.keys returns view object """
+    """https://www.w3schools.com/python/ref_dictionary_keys.asp"""
+    """insert items into aisle_mapping"""
+    """link fulfillment_dict to ailse_mapping"""
+    """create new_dict variable"""
+    """update new_dict to fulfillment_dict"""
+    """return new_dict"""
 
-    pass
+    fulfillment_dict={}
+    for item in cart.keys():
+        aisle_mapping[item].insert(0,cart[item])
+        fulfillment_dict[item]=aisle_mapping[item]
+    new_dict={}
+    new_dict |= reversed(sorted(fulfillment_dict.items()))
+    return new_dict
 
 
 def update_store_inventory(fulfillment_cart, store_inventory):
@@ -62,4 +87,12 @@ def update_store_inventory(fulfillment_cart, store_inventory):
     :return: dict - store_inventory updated.
     """
 
-    pass
+    """create a for loop for updating inventory"""
+    """-= is subtraction assignment operator, subtracts a value from a variable"""
+    """update inventory when a user orders, so take away from invnetory to fullfil cart"""
+    """check if inventory is empty"""
+    for key in fulfillment_cart.keys():
+        store_inventory[key][0] -= fulfillment_cart[key][0]
+        if store_inventory[key][0]<=0:
+            store_inventory[key][0]="Out of Stock"
+    return store_inventory
