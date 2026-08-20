@@ -8,6 +8,10 @@ def add_item():
         print("Please fill in both textboxes")
         return
 
+    if amount.isalpha():
+        print("Amount cannot contain letters")
+        return
+
     print(item, amount)
 
         # Add item and amount to the Listbox
